@@ -1,4 +1,4 @@
-// --- FUNGSI MAIN UTAMA ---
+// FUNGSI MAIN UTAMA
 void main() {
   print("=== Contoh Function 1: Tanpa Return ===");
   tampilkan();
@@ -22,7 +22,7 @@ void main() {
 }
 
 
-// --- DEFINISI FUNGSI-FUNGSI ---
+//  DEFINISI FUNGSI-FUNGSI
 
 // Contoh 1
 tampilkan() {
