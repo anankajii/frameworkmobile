@@ -18,131 +18,110 @@ class _FormRegisterState extends State<FormRegister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.deepPurple, Colors.purpleAccent],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Card(
-              margin: const EdgeInsets.all(20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              const SizedBox(height: 20),
+
+              /// BACK BUTTON
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.arrow_back),
               ),
-              elevation: 10,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
 
-                      const Text(
-                        "Register Account",
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+              const SizedBox(height: 10),
 
-                      const SizedBox(height: 20),
+              /// TITLE
+              const Text(
+                "Welcome Back",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
 
-                      /// NAMA
-                      TextFormField(
-                        controller: controllerNama,
-                        decoration: const InputDecoration(
-                          labelText: "Nama Lengkap",
-                          prefixIcon: Icon(Icons.person),
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Nama tidak boleh kosong";
-                          }
-                          return null;
-                        },
-                      ),
+              const SizedBox(height: 6),
 
-                      const SizedBox(height: 15),
+              const Text(
+                "Login atau register untuk melanjutkan",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
 
-                      /// EMAIL
-                      TextFormField(
-                        controller: controllerEmail,
-                        decoration: const InputDecoration(
-                          labelText: "Email",
-                          prefixIcon: Icon(Icons.email),
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Email tidak boleh kosong";
-                          }
-                          if (!value.contains("@")) {
-                            return "Format email tidak valid";
-                          }
-                          return null;
-                        },
-                      ),
+              const SizedBox(height: 40),
 
-                      const SizedBox(height: 15),
-
-                      /// PASSWORD
-                      TextFormField(
-                        controller: controllerPassword,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          labelText: "Password",
-                          prefixIcon: Icon(Icons.lock),
-                          border: OutlineInputBorder(),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.length < 6) {
-                            return "Password minimal 6 karakter";
-                          }
-                          return null;
-                        },
-                      ),
-
-                      const SizedBox(height: 20),
-
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 15),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Registrasi Berhasil"),
-                                ),
-                              );
-                            }
-                          },
-                          child: const Text("Register"),
-                        ),
-                      ),
-
-                      const SizedBox(height: 10),
-
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text("Sudah punya akun? Login"),
-                      ),
-                    ],
+              /// INPUT EMAIL
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Email atau No. Telp",
+                  hintText: "Masukkan email atau nomor",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
               ),
-            ),
+
+              const SizedBox(height: 24),
+
+              /// BUTTON
+              SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: FilledButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "Lanjutkan",
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 32),
+
+              /// DIVIDER
+              Row(
+                children: const [
+                  Expanded(child: Divider()),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text("Atau gunakan akun"),
+                  ),
+                  Expanded(child: Divider()),
+                ],
+              ),
+
+              const SizedBox(height: 24),
+
+              /// GOOGLE BUTTON
+              SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: OutlinedButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.g_mobiledata),
+                  label: const Text("Sign in with Google"),
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              /// APPLE BUTTON
+              SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: OutlinedButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.apple),
+                  label: const Text("Sign in with Apple"),
+                ),
+              ),
+            ],
           ),
         ),
       ),
